@@ -21,4 +21,6 @@
   <bean class="controller.BookDetailController">
   	<property name="bookBoardDao" ref="bookBoardDao"></property>
   </bean>
+  
+  <bean class="utils.FileUtils"/>
  </beans>

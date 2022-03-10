@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import spring.AlreadyExistingBookException;
 import spring.BookBoard;
 import spring.BookRegisterService;
+import spring.NotImageFileException;
 import spring.RegisterRequest;
 
 @Controller
@@ -27,6 +28,7 @@ public class RegisterController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String handle2(@ModelAttribute("formData") RegisterRequest regReq,HttpServletRequest request,
 			Errors errors) throws Exception {
+		
 		new RegisterValidator().validate(regReq, errors);
 		if(errors.hasErrors()) {
 			return "/book_reg_form";
@@ -37,6 +39,9 @@ public class RegisterController {
 		}catch(AlreadyExistingBookException e) {
 			errors.rejectValue("isbn", "duplicate", "이미 있는 ISBN 번호 입니다.");
 			return "/book_reg_form";
+		}catch(NotImageFileException e) {
+			errors.rejectValue("image", "bad", "이미지 파일이 아닙니다.");
+			return "/book_reg_form";
+			}
 		}
 	}
-}

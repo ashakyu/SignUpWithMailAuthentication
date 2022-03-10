@@ -13,6 +13,13 @@
   
   <!-- 의존 라이브러리 설정하는 부분 -->
   <dependencies>
+	<dependency>
+		<groupId>org.apache.tika</groupId>
+		<artifactId>tika-core</artifactId>
+		<version>1.24.1</version>
+	</dependency>
+	
+
   	<!-- multipart -->
   	<dependency>
   		<groupId>commons-fileupload</groupId>
