@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="UserDAO">
+	<insert id="insert" parameterType="MemberVO">
+		insert into member(id, password, email, userkey, authstatus)
+		VALUES (#{id}, #{password}, #{email}, #{userkey}, 0)
+	
+	</insert>
+	<update id="createAuthkey" parameterType="hashmap">
+		update member set userkey = #{userkey} where email = #{email}
+	</update>
+	
+	<update id="updateAuthstatus">
+		update member set authstatus = 1 where email = #{email}
+	</update>
+	
+</mapper>
